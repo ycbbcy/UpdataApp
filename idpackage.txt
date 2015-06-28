@@ -1,0 +1,2 @@
+47994,com.gamevil.kritikamobile.android.google.global.normal
+18192,com.backflipstudios.android.ninjumpdeluxe
