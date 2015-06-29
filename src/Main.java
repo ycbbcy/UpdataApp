@@ -13,47 +13,29 @@ import com.sun.jndi.url.rmi.rmiURLContext;
 
 
 public class Main {
-	
-	
 
-	public static void main(String[] args) throws IOException {
-		gversion gv = new gversion();
-		dversion dv = new dversion();
-		String[] idpa = filereader();
-		HashMap<Integer, String> idpahHashMap = new HashMap<>(); 
-		rm("result.txt");
-		FileWriter fw =new FileWriter("result.txt");    //创建一个FileWriter对象   写到磁盘
-		BufferedWriter bw =new BufferedWriter(fw);     //创建一个BufferedReader对象
-
-
-		
+	public static void main(String[] args) throws IOException, Exception {
+		String[][] idpa = filereader();  
+		WriteV[] wv=new WriteV[idpa.length]; 
 		for (int i = 0; i < idpa.length; i++) {
-			String[] idpause = idpa[i].split(",");
-			Integer in = Integer.parseInt(idpause[0]);
-			idpahHashMap.put(in, idpause[1]);		
+			wv[i] = new WriteV(idpa[i][0],idpa[i][1]);
 		}
 
-		Iterator iter = idpahHashMap.entrySet().iterator(); 
-		while (iter.hasNext()) { 
-			Map.Entry entry = (Map.Entry) iter.next(); 
-			String id = entry.getKey().toString(); 
-			String pa = entry.getValue().toString(); 
-			String dvr = dv.getdv(id);
-			String gvr = gv.getgv(pa);
-			if (!dvr.equals(gvr)) {
-				String re1 = id+"|"+pa+"|dv="+dvr+"|gv="+gvr;
-				bw.write(re1);                              //写一行
-				bw.newLine(); 
+		Thread thread[] = new Thread[wv.length];
+		for (int j = 0; j < wv.length; j++) {
+			if (j%10!=0||j==0) {
+				thread[j] = new Thread(wv[j]);
+				thread[j].start();
 			}else {
-				System.out.println(id+"|"+pa+"|未更新");
-			}       
-		} 
-		bw.flush(); 
-		bw.close();
+				Thread.sleep(5000);
+				thread[j] = new Thread(wv[j]);
+				thread[j].start();
+			}
+		}
 	}
 
 
-	public static String[] filereader() throws IOException {
+	public static String[][] filereader() throws IOException {
 
 		File fl=new File("idpackage.txt");
 		FileReader fr = new FileReader(fl); 
@@ -64,9 +46,13 @@ public class Main {
 			sb.append(tm+" ");
 		}
 		String[] idpa = sb.toString().split(" ");
-		return idpa;
+		bf.close();
+		String[][] idpa2=new String[idpa.length][1];
+		for (int i = 0; i < idpa.length; i++) {
+			idpa2[i]=idpa[i].split(","); 
+		}
+		return idpa2;
 	}
-
 
 	public static void rm(String filename) {
 		File f = new File(filename);
@@ -74,9 +60,6 @@ public class Main {
 			f.delete();
 		}
 	}
-	
-
-
 }
 
 

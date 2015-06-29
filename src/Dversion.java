@@ -7,23 +7,22 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 
-public class gversion {
 
-	public String getgv(String packagename) throws IOException {
-		String gv = "Ê§°Ü";
-		String pageUrl = "="+packagename;
+public class Dversion {
+
+	public String getdv(String id) throws IOException {
+		
+		String dv = "Ê§°Ü";
+		String pageUrl = ""+id+"";
 		Document doc = Jsoup.connect(pageUrl).userAgent("Mozilla").get();
-		Elements e1 = doc.select("div[itemprop]");
+		Elements e1 = doc.select("span[class]");
 		for (Iterator iterator = e1.iterator(); iterator.hasNext();) {
 			Element element = (Element) iterator.next();
-			if (element.attr("itemprop").toString().equals("softwareVersion")) {
-				gv= element.text().toString();
+            if (element.attr("class").toString().equals("ov")) {
+    			dv= element.text().toString();
 			};		
 		}
-		return gv;
+		return dv;
 	}
+	
 }
-
-
-
-
