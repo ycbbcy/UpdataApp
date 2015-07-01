@@ -1,1 +1,1 @@
-47994,com.gamevil.kritikamobile.android.google.global.normal
+46246,com.worms3.app
