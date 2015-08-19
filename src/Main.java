@@ -15,6 +15,12 @@ import com.sun.jndi.url.rmi.rmiURLContext;
 public class Main {
 
 	public static void main(String[] args) throws IOException, Exception {
+		
+		Cversion cv = new Cversion();
+		cv.getcv("");
+		System.exit(0);
+		
+		
 		String[][] idpa = filereader();  
 		WriteV[] wv=new WriteV[idpa.length]; 
 		for (int i = 0; i < idpa.length; i++) {
