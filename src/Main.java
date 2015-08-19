@@ -16,11 +16,7 @@ public class Main {
 
 	public static void main(String[] args) throws IOException, Exception {
 		
-		Cversion cv = new Cversion();
-		cv.getcv("");
-		System.exit(0);
-		
-		
+			
 		String[][] idpa = filereader();  
 		WriteV[] wv=new WriteV[idpa.length]; 
 		for (int i = 0; i < idpa.length; i++) {
@@ -43,7 +39,7 @@ public class Main {
 
 	public static String[][] filereader() throws IOException {
 
-		File fl=new File("idpackage.txt");
+		File fl=new File("software.txt");
 		FileReader fr = new FileReader(fl); 
 		BufferedReader bf = new BufferedReader(fr);
 		String tm = "";

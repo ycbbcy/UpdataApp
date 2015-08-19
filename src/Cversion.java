@@ -17,7 +17,6 @@ public class Cversion {
 		for (Iterator iterator = e1.iterator(); iterator.hasNext();) {
 			Element element = (Element) iterator.next();
 				cv= element.text().toString().split("_")[1];	
-				System.out.println(cv);
 		}
 		return cv;
 	}
