@@ -54,9 +54,9 @@ public class WriteV implements Runnable{
 			Cversion cv=new Cversion();
 			Gversion gv=new Gversion();
 			String dvr = dv.getdv(id);
-			String cvr = cv.getcv(pa);
-			if ((compareVersion(dvr, cvr)<0)&&(!dvr.equals("Ê§°Ü"))&&(!cvr.equals("Ê§°Ü"))) {
-				String re1 = id+"|"+pa+"|dv="+dvr+"|gv="+cvr;
+			String gvr = gv.getgv(pa);
+			if ((compareVersion(dvr, gvr)<0)&&(!dvr.equals("Ê§°Ü"))&&(!gvr.equals("Ê§°Ü"))) {
+				String re1 = id+"|"+pa+"|dv="+dvr+"|gv="+gvr;
 				System.out.println(re1);
 
 			}else {
